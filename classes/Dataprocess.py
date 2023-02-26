@@ -1,6 +1,8 @@
 from classes.DbMongo import DbMongo
 from classes import DATA, Students
 
+#This class creates the methods and then migrates them one by one to their respective classes
+
 class Dataprocess:
 
     #@staticmethod
