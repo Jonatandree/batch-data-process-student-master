@@ -12,6 +12,9 @@ def main():
     #pipeline.create_careers(db)
     #Dataprocess(DATA).create_careers(db)
 
+
+    ###################################################################################################################################
+
     for i in range(4):
         carrera = DATA[i]['carrera']
         alumno = DATA[i]['nombre_completo']
@@ -30,7 +33,7 @@ def main():
 
         #estado = DATA[i]['cursos_reprobados']
         #Dataprocess(estado).create_enrollments(db)
-
+    ####################################################################################################################################
 
 
     
