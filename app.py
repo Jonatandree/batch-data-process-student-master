@@ -14,29 +14,52 @@ def main():
 
 
     ###################################################################################################################################
+    carrera = DATA[0]['carrera']
+    alumno = DATA[0]['nombre_completo']
+
+    #b=[""] #esta variable es para acumlar las carreas que sustraemos de DATA y que no se repitan esta lista para implementarla solo fatal guardas los alumnos par cada carrera
+    #l=[{'carrera': carrera,'alumnos':[alumno ]}]
+    #k=[{'carrera': 'Matematica', 'alumnos': ['keydi', 'vicky', 'Daniel']}]
+    #k.append(b)
+
+
+    #print(k[0]['alumnos'])
+    #######################################################################################
+
+    b=[]
     
-    b=[]#esta variable es para acumlar las carreas que sustraemos de DATA y que no se repitan esta lista para implementarla solo fatal guardas los alumnos par cada carrera
-    for i in range(5): #el  rango deberia estar en 200 pero lo dejo en 5 para hacer pruebas
-        carrera = DATA[i]['carrera']
-        alumno = DATA[i]['nombre_completo']
+    c=[]#lista para capturar carreras sin repetirse
+    k=[]#lista para capturar carreras con repeticion
 
-        b.count(DATA[i]['carrera'])
+    c=[]#lista para capturar cursos sin repetirse
+    k=[]#lista para capturar cursos con repeticion
 
-        if(b.count(DATA[i]['carrera']) == 0):
-            b.append(DATA[i]['carrera'])
-        print(b) ##con esta variable imprimimos un tipo de __dict__ con las carreras sin repetirse
+    for i in range(10): #el  rango deberia estar en 200 pero lo dejo en 5 para hacer pruebas
+        contador = 1
+        carrera = DATA[i]['carrera'] #aqui almacenamos el la carrera del alumno
+        alumno = DATA[i]['nombre_completo'] # alamcenamos el nombre del alumno
+        k.append(carrera)
+        
 
-        Careers(carrera,alumno).create_careers(db)
+        if(c.count(DATA[i]['carrera']) == 0):
+            c.append(carrera)
+            b.append([{'carrera': carrera,'primer_estudiante':[alumno]}])
+            #print(len(c))
+            l=c[len(c)-1]
+            Careers(l,alumno).create_careers(db)
+
+
 
         cursos_aprobados = DATA[i]['cursos_aprobados']
         cursos_reprobados = DATA[i]['cursos_reprobados']
-        Courses(alumno,cursos_aprobados,cursos_reprobados).create_courses(db)
+        Courses(alumno,cursos_aprobados,cursos_reprobados).create_courses(db) 
 
         cuenta=DATA[i]['numero_cuenta']
         edad=DATA[i]['edad']
         Students(alumno,cuenta,edad,cursos_aprobados,cursos_reprobados).create_students(db)
 
         Enrollments(alumno,cursos_aprobados,cursos_reprobados).create_enrollments(db)
+
         estado = DATA[i]['cursos_reprobados']
         Dataprocess(estado).create_enrollments(db)
 
